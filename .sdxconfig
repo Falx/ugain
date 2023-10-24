@@ -1,0 +1,13 @@
+{
+    "formatVersion": "1.0.0",
+    "catalogs": [
+        {
+            "name": "SolidLab Catalog",
+            "uri": "https://catalog.solidlab.be"
+        }
+    ],
+    "options": {
+        "autoGenerate": true,
+        "rawRequest": false
+    }
+}

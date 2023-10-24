@@ -1,0 +1,3 @@
+# .graphqlrc.yml
+schema: src/.sdx-gen/graphql/schema.graphqls
+documents: src/gql/**/*.graphql

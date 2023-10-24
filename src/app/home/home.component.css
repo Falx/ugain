@@ -1,0 +1,10 @@
+.map {
+    aspect-ratio: 1;
+    width: 100%;
+    border: 1px solid yellow;
+}
+
+.table {
+    width: 100%;
+    border: 1px solid grey;
+}
