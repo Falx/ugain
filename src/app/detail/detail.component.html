@@ -1,5 +1,36 @@
 <div class="row">
-    <div class="col-md-12 col-lg-6">
-        <div class="">{{id}}</div>
+    <div class="col-md-6">
+        <div *ngIf="options" class="map" leaflet [leafletOptions]="options"></div>
+    </div>
+    <div class="col-md-6" *ngIf="toilet">
+        <table class="table table-sm table-striped">
+            <tbody>
+                <tr>
+                    <td>Toilets</td>
+                    <td>{{toilet.Toilets}}</td>
+                </tr>
+                <tr>
+                    <td>Urinals</td>
+                    <td>{{toilet.Urinals}}</td>
+                </tr>
+                <tr>
+                    <td>Diaper changing tables</td>
+                    <td>{{toilet.DiaperChangingTables}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <button class="btn btn-primary">Navigate</button>
+
+        <p class="openingHours float-end" align="right"><small>{{toilet.openingHours}}</small></p>
+
+    </div>
+</div>
+<div class="row mb-3" *ngIf="toilet">
+    <div class="col">
+        <h4>{{toilet.name}} <small>({{toilet.Neighbourhood}})</small></h4>
+        <p><i>{{toilet.description}}</i></p>
+
+        <img class="img-fluid" [src]="toilet!.image">
     </div>
 </div>

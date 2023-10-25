@@ -1,1 +1,42 @@
-/* You can add global styles to this file, and also import other style files */
+.fix {
+    height: 100vh;
+    position: relative;
+}
+
+.banner {
+    height: 60px;
+    background-color: rgb(245, 221, 3);
+    margin: 0 -12px;
+    padding: 12px;
+    font-size: 24px;
+    font-variant: small-caps;
+    cursor: pointer;
+}
+
+.outlet {
+    height: calc(100vh - 60px);
+}
+
+.outlet > .col {
+    padding: 0;
+}
+
+.map {
+    width: 100%;
+    /* border: 1px solid blue; */
+    height: calc(40vh - 60px);
+;
+}
+
+.mytable {
+    position: absolute;
+    height: 60%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* border: 1px solid grey; */
+}
+
+.openingHours {
+    white-space: pre-line;
+}

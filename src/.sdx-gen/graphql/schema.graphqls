@@ -1,0 +1,194 @@
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+directive @is(class: String) on OBJECT | INPUT_OBJECT
+
+directive @property(iri: String) on FIELD_DEFINITION | INPUT_FIELD_DEFINITION
+
+directive @identifier on FIELD_DEFINITION
+
+type Query {
+  geoCoordinates(id: String): GeoCoordinates
+  geoCoordinatesCollection: [GeoCoordinates]
+  postalAddress(id: String): PostalAddress
+  postalAddressCollection: [PostalAddress]
+  publicToilet(id: String): PublicToilet
+  publicToiletCollection: [PublicToilet]
+}
+
+type Mutation {
+  createGeoCoordinates(input: CreateGeoCoordinatesInput!): GeoCoordinates!
+  createPostalAddress(input: CreatePostalAddressInput!): PostalAddress!
+  createPublicToilet(input: CreatePublicToiletInput!): PublicToilet!
+  mutateGeoCoordinates(id: ID!): GeoCoordinatesMutation
+  mutatePostalAddress(id: ID!): PostalAddressMutation
+  mutatePublicToilet(id: ID!): PublicToiletMutation
+}
+
+type GeoCoordinates @is(class: "http://schema.org/GeoCoordinates") {
+  "Auto-generated property that will be assigned to the 'iri' of the Thing that is being queried."
+  id: ID! @identifier
+  address: String @property(iri: "http://schema.org/address")
+  latitude: String @property(iri: "http://schema.org/latitude")
+  longitude: String @property(iri: "http://schema.org/longitude")
+}
+
+type GeoCoordinatesMutation @is(class: "http://schema.org/GeoCoordinates") {
+  delete: GeoCoordinates!
+  update(input: UpdateGeoCoordinatesInput!): GeoCoordinates!
+}
+
+type PostalAddress @is(class: "http://schema.org/PostalAddress") {
+  "Auto-generated property that will be assigned to the 'iri' of the Thing that is being queried."
+  id: ID! @identifier
+  addressCountry: String @property(iri: "http://schema.org/addressCountry")
+  addressLocality: String @property(iri: "http://schema.org/addressLocality")
+  addressRegion: String @property(iri: "http://schema.org/addressRegion")
+  postalCode: String @property(iri: "http://schema.org/postalCode")
+  postOfficeBoxNumber: String @property(iri: "http://schema.org/postOfficeBoxNumber")
+  streetAddress: String @property(iri: "http://schema.org/streetAddress")
+}
+
+type PostalAddressMutation @is(class: "http://schema.org/PostalAddress") {
+  delete: PostalAddress!
+  update(input: UpdatePostalAddressInput!): PostalAddress!
+}
+
+type PublicToilet @is(class: "http://schema.org/PublicToilet") {
+  "Auto-generated property that will be assigned to the 'iri' of the Thing that is being queried."
+  id: ID! @identifier
+  AccessStatus: String @property(iri: "http://stad.gent/data/ns/AccessStatus")
+  address: PostalAddress! @property(iri: "http://schema.org/address")
+  AdultToilets: String @property(iri: "http://stad.gent/data/ns/AdultToilets")
+  buildingsType: String @property(iri: "http://dbpedia.org/ontology/buildingsType")
+  ChildrensToilets: String @property(iri: "http://stad.gent/data/ns/ChildrensToilets")
+  CleaningCompany: String @property(iri: "http://stad.gent/data/ns/CleaningCompany")
+  description: String @property(iri: "http://schema.org/description")
+  DiaperChangingTables: String @property(iri: "http://stad.gent/data/ns/DiaperChangingTables")
+  geo: GeoCoordinates! @property(iri: "http://schema.org/geo")
+  identifier: String! @property(iri: "http://purl.org/dc/terms/identifier")
+  image: String @property(iri: "http://schema.org/image")
+  locationType: String @property(iri: "http://stad.gent/data/ns/locationType")
+  name: String! @property(iri: "http://xmlns.com/foaf/0.1/name")
+  Neighbourhood: String @property(iri: "http://dbpedia.org/resource/Neighbourhood")
+  openingHours: String @property(iri: "http://schema.org/openingHours")
+  OpeninghoursId: String @property(iri: "http://stad.gent/data/ns/OpeninghoursId")
+  PotableWaterAccessPoints: String @property(iri: "http://stad.gent/data/ns/PotableWaterAccessPoints")
+  Restroom_attendant: String @property(iri: "http://dbpedia.org/resource/Restroom_attendant")
+  source: String @property(iri: "http://purl.org/dc/terms/source")
+  statusCode: String @property(iri: "http://purl.org/oslo/ns/localgov#statusCode")
+  Supervision: String @property(iri: "http://stad.gent/data/ns/Supervision")
+  Toilets: String @property(iri: "http://stad.gent/data/ns/Toilets")
+  Urinals: String @property(iri: "http://stad.gent/data/ns/Urinals")
+  WaterAccessPoints: String @property(iri: "http://stad.gent/data/ns/WaterAccessPoints")
+  WebPage: String @property(iri: "http://schema.org/WebPage")
+}
+
+type PublicToiletMutation @is(class: "http://schema.org/PublicToilet") {
+  delete: PublicToilet!
+  update(input: UpdatePublicToiletInput!): PublicToilet!
+  clearAddress: PublicToilet!
+  clearGeo: PublicToilet!
+  linkAddress(id: ID!): PublicToilet!
+  linkGeo(id: ID!): PublicToilet!
+  setAddress(input: CreatePostalAddressInput!): PublicToilet!
+  setGeo(input: CreateGeoCoordinatesInput!): PublicToilet!
+  unlinkAddress(id: ID!): PublicToilet!
+  unlinkGeo(id: ID!): PublicToilet!
+}
+
+input CreateGeoCoordinatesInput @is(class: "http://schema.org/GeoCoordinates") {
+  "Optional URI to use as an identifier for the new instance. One of the 'id' or 'slug' fields must be set!"
+  id: ID
+  "Optional slug that is combined with the context of the request to generate an identifier for the new instance. One of the 'id' or 'slug' fields must be set!"
+  slug: String
+  address: String @property(iri: "http://schema.org/address")
+  latitude: String @property(iri: "http://schema.org/latitude")
+  longitude: String @property(iri: "http://schema.org/longitude")
+}
+
+input CreatePostalAddressInput @is(class: "http://schema.org/PostalAddress") {
+  "Optional URI to use as an identifier for the new instance. One of the 'id' or 'slug' fields must be set!"
+  id: ID
+  "Optional slug that is combined with the context of the request to generate an identifier for the new instance. One of the 'id' or 'slug' fields must be set!"
+  slug: String
+  addressCountry: String @property(iri: "http://schema.org/addressCountry")
+  addressLocality: String @property(iri: "http://schema.org/addressLocality")
+  addressRegion: String @property(iri: "http://schema.org/addressRegion")
+  postalCode: String @property(iri: "http://schema.org/postalCode")
+  postOfficeBoxNumber: String @property(iri: "http://schema.org/postOfficeBoxNumber")
+  streetAddress: String @property(iri: "http://schema.org/streetAddress")
+}
+
+input CreatePublicToiletInput @is(class: "http://schema.org/PublicToilet") {
+  "Optional URI to use as an identifier for the new instance. One of the 'id' or 'slug' fields must be set!"
+  id: ID
+  "Optional slug that is combined with the context of the request to generate an identifier for the new instance. One of the 'id' or 'slug' fields must be set!"
+  slug: String
+  AccessStatus: String @property(iri: "http://stad.gent/data/ns/AccessStatus")
+  AdultToilets: String @property(iri: "http://stad.gent/data/ns/AdultToilets")
+  buildingsType: String @property(iri: "http://dbpedia.org/ontology/buildingsType")
+  ChildrensToilets: String @property(iri: "http://stad.gent/data/ns/ChildrensToilets")
+  CleaningCompany: String @property(iri: "http://stad.gent/data/ns/CleaningCompany")
+  description: String @property(iri: "http://schema.org/description")
+  DiaperChangingTables: String @property(iri: "http://stad.gent/data/ns/DiaperChangingTables")
+  identifier: String! @property(iri: "http://purl.org/dc/terms/identifier")
+  image: String @property(iri: "http://schema.org/image")
+  locationType: String @property(iri: "http://stad.gent/data/ns/locationType")
+  name: String! @property(iri: "http://xmlns.com/foaf/0.1/name")
+  Neighbourhood: String @property(iri: "http://dbpedia.org/resource/Neighbourhood")
+  openingHours: String @property(iri: "http://schema.org/openingHours")
+  OpeninghoursId: String @property(iri: "http://stad.gent/data/ns/OpeninghoursId")
+  PotableWaterAccessPoints: String @property(iri: "http://stad.gent/data/ns/PotableWaterAccessPoints")
+  Restroom_attendant: String @property(iri: "http://dbpedia.org/resource/Restroom_attendant")
+  source: String @property(iri: "http://purl.org/dc/terms/source")
+  statusCode: String @property(iri: "http://purl.org/oslo/ns/localgov#statusCode")
+  Supervision: String @property(iri: "http://stad.gent/data/ns/Supervision")
+  Toilets: String @property(iri: "http://stad.gent/data/ns/Toilets")
+  Urinals: String @property(iri: "http://stad.gent/data/ns/Urinals")
+  WaterAccessPoints: String @property(iri: "http://stad.gent/data/ns/WaterAccessPoints")
+  WebPage: String @property(iri: "http://schema.org/WebPage")
+}
+
+input UpdateGeoCoordinatesInput @is(class: "http://schema.org/GeoCoordinates") {
+  address: String @property(iri: "http://schema.org/address")
+  latitude: String @property(iri: "http://schema.org/latitude")
+  longitude: String @property(iri: "http://schema.org/longitude")
+}
+
+input UpdatePostalAddressInput @is(class: "http://schema.org/PostalAddress") {
+  addressCountry: String @property(iri: "http://schema.org/addressCountry")
+  addressLocality: String @property(iri: "http://schema.org/addressLocality")
+  addressRegion: String @property(iri: "http://schema.org/addressRegion")
+  postalCode: String @property(iri: "http://schema.org/postalCode")
+  postOfficeBoxNumber: String @property(iri: "http://schema.org/postOfficeBoxNumber")
+  streetAddress: String @property(iri: "http://schema.org/streetAddress")
+}
+
+input UpdatePublicToiletInput @is(class: "http://schema.org/PublicToilet") {
+  AccessStatus: String @property(iri: "http://stad.gent/data/ns/AccessStatus")
+  AdultToilets: String @property(iri: "http://stad.gent/data/ns/AdultToilets")
+  buildingsType: String @property(iri: "http://dbpedia.org/ontology/buildingsType")
+  ChildrensToilets: String @property(iri: "http://stad.gent/data/ns/ChildrensToilets")
+  CleaningCompany: String @property(iri: "http://stad.gent/data/ns/CleaningCompany")
+  description: String @property(iri: "http://schema.org/description")
+  DiaperChangingTables: String @property(iri: "http://stad.gent/data/ns/DiaperChangingTables")
+  identifier: String @property(iri: "http://purl.org/dc/terms/identifier")
+  image: String @property(iri: "http://schema.org/image")
+  locationType: String @property(iri: "http://stad.gent/data/ns/locationType")
+  name: String @property(iri: "http://xmlns.com/foaf/0.1/name")
+  Neighbourhood: String @property(iri: "http://dbpedia.org/resource/Neighbourhood")
+  openingHours: String @property(iri: "http://schema.org/openingHours")
+  OpeninghoursId: String @property(iri: "http://stad.gent/data/ns/OpeninghoursId")
+  PotableWaterAccessPoints: String @property(iri: "http://stad.gent/data/ns/PotableWaterAccessPoints")
+  Restroom_attendant: String @property(iri: "http://dbpedia.org/resource/Restroom_attendant")
+  source: String @property(iri: "http://purl.org/dc/terms/source")
+  statusCode: String @property(iri: "http://purl.org/oslo/ns/localgov#statusCode")
+  Supervision: String @property(iri: "http://stad.gent/data/ns/Supervision")
+  Toilets: String @property(iri: "http://stad.gent/data/ns/Toilets")
+  Urinals: String @property(iri: "http://stad.gent/data/ns/Urinals")
+  WaterAccessPoints: String @property(iri: "http://stad.gent/data/ns/WaterAccessPoints")
+  WebPage: String @property(iri: "http://schema.org/WebPage")
+}

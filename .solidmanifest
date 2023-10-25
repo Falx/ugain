@@ -3,5 +3,19 @@
     "name": "ugain",
     "author": "Thomas",
     "license": "ISC",
-    "shapePackages": []
+    "shapePackages": [
+        {
+            "createdAt": "2023-10-24T11:40:04.284Z",
+            "lastModifiedAt": null,
+            "id": "https://ex-shapes.discover.ilabt.imec.be/public-assets",
+            "name": "https://ex-shapes.discover.ilabt.imec.be",
+            "description": null,
+            "license": null,
+            "contributor": "thomas.dupont@ugent.be",
+            "maintainers": [],
+            "homepage": null,
+            "repository": null,
+            "downloads": 16
+        }
+    ]
 }

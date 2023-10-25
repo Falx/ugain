@@ -1,0 +1,38 @@
+query listToilets {
+    publicToiletCollection {
+        id
+        name
+        Toilets
+        Urinals
+        DiaperChangingTables
+        Neighbourhood
+        geo {
+            latitude
+            longitude
+        }
+    }
+}
+
+query getToilet($id: String!) {
+    publicToilet(id: $id) {
+        id
+        name
+        geo {
+            latitude
+            longitude
+        }
+        openingHours
+        Toilets
+        Urinals
+        DiaperChangingTables
+        Neighbourhood
+        address {
+            streetAddress
+        }
+        image
+        WebPage
+        PotableWaterAccessPoints
+        Supervision
+        description
+    }
+}

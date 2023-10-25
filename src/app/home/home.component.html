@@ -1,9 +1,34 @@
+<!-- <div class="container"> -->
 <div class="row">
-    <div class="col-md-12 col-lg-6">
-        <div class="map">MYMAP</div>
-
+    <div class="col">
+        <div *ngIf="options" class="map" leaflet [leafletOptions]="options"></div>
     </div>
-    <div class="col-md-12 col-lg-6">
-        <div class="table">MYTABLE</div>
+</div>
+<div class="row">
+    <div class="col">
+        <div class="mytable table-responsive">
+            <table class="table table-sm table-striped table-hover">
+                <thead class="sticky-top">
+                    <tr>
+                        <th>Distance</th>
+                        <th colspan="2">Address</th>
+                        <th>Toilets</th>
+                        <th>Urinals</th>
+                        <th>Diaper</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let toilet of toiletCollection" (click)="navigateTo(toilet!.id)"
+                        [style.cursor]="'pointer'">
+                        <td>{{dist(toilet) | number:'2.0-0'}} m</td>
+                        <td>{{toilet?.name}}</td>
+                        <td>{{toilet?.Neighbourhood}}</td>
+                        <td>{{toilet?.Toilets}}</td>
+                        <td>{{toilet?.Urinals}}</td>
+                        <td>{{toilet?.DiaperChangingTables}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>

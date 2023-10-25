@@ -1,0 +1,199 @@
+@prefix dbpedia:	<http://dbpedia.org/resource/> .
+@prefix dbpedia_ont:	<http://dbpedia.org/ontology/> .
+@prefix dc:	<http://purl.org/dc/terms/> .
+@prefix exshapes: <https://ex-shapes.discover.ilabt.imec.be#> .
+@prefix foaf:	<http://xmlns.com/foaf/0.1/> .
+@prefix gent:	<http://stad.gent/data/ns/> .
+@prefix gov:	<http://purl.org/oslo/ns/localgov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix schema: <http://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+exshapes:PublicToilet
+    a rdfs:Class, sh:NodeShape;
+    sh:targetClass schema:PublicToilet;
+    sh:property [
+            sh:path dc:identifier;
+            sh:datatype xsd:string;
+            sh:minCount 1;
+            sh:maxCount 1;
+        ],
+        [
+            sh:path schema:address;
+            sh:class schema:PostalAddress;
+            sh:minCount 1;
+            sh:maxCount 1;
+        ],
+        [
+            sh:path schema:description;
+            sh:datatype xsd:string;
+            sh:maxCount 1;
+        ],
+        [
+            sh:path schema:image;
+            sh:datatype xsd:string;
+            sh:maxCount 1;
+        ],
+        [
+            sh:path schema:WebPage;
+            sh:datatype xsd:string;
+            sh:maxCount 1;
+        ],
+        [
+            sh:path schema:geo;
+            sh:class schema:GeoCoordinates;
+            sh:minCount 1;
+            sh:maxCount 1;
+        ],
+        [
+            sh:path dbpedia:Restroom_attendant;
+            sh:datatype xsd:string;
+            sh:maxCount 1;
+        ],
+        [
+            sh:path gov:statusCode;
+            sh:datatype xsd:string;
+            sh:maxCount 1;
+        ],
+        [
+            sh:path foaf:name;
+            sh:datatype xsd:string;
+            sh:minCount 1;
+            sh:maxCount 1;
+        ],
+        [
+            sh:path dbpedia_ont:buildingsType;
+            sh:datatype xsd:string;
+            sh:maxCount 1;
+        ],
+        [
+            sh:path dbpedia:Neighbourhood;
+            sh:datatype xsd:string;
+            sh:maxCount 1;
+        ],
+        [
+            sh:path gent:AccessStatus;
+            sh:datatype xsd:string;
+            sh:maxCount 1;
+        ], 
+        [
+            sh:path gent:AdultToilets;
+            sh:datatype xsd:string;
+            sh:maxCount 1;
+        ], 
+        [
+            sh:path gent:ChildrensToilets;
+            sh:datatype xsd:string;
+            sh:maxCount 1;
+        ], 
+        [
+            sh:path gent:CleaningCompany;
+            sh:datatype xsd:string;
+            sh:maxCount 1;
+        ], 
+        [
+            sh:path gent:DiaperChangingTables;
+            sh:datatype xsd:string;
+            sh:maxCount 1;
+        ], 
+        [
+            sh:path gent:OpeninghoursId;
+            sh:datatype xsd:string;
+            sh:maxCount 1;
+        ], 
+        [
+            sh:path gent:PotableWaterAccessPoints;
+            sh:datatype xsd:string;
+            sh:maxCount 1;
+        ], 
+        [
+            sh:path gent:Supervision;
+            sh:datatype xsd:string;
+            sh:maxCount 1;
+        ], 
+        [
+            sh:path gent:Toilets;
+            sh:datatype xsd:string;
+            sh:maxCount 1;
+        ], 
+        [
+            sh:path gent:Urinals;
+            sh:datatype xsd:string;
+            sh:maxCount 1;
+        ], 
+        [
+            sh:path gent:WaterAccessPoints;
+            sh:datatype xsd:string;
+            sh:maxCount 1;
+        ], 
+        [
+            sh:path gent:locationType;
+            sh:datatype xsd:string;
+            sh:maxCount 1;
+        ], 
+        [
+            sh:path dc:source;
+            sh:datatype xsd:string;
+            sh:maxCount 1;
+        ],
+        [
+            sh:path schema:openingHours;
+            sh:datatype xsd:string;
+            sh:maxCount 1;
+        ].
+
+exshapes:GeoCoordinates
+    a rdfs:Class, sh:NodeShape;
+    sh:targetClass schema:GeoCoordinates;
+    sh:property [
+        sh:path schema:address;
+        sh:datatype xsd:string;
+        sh:maxCount 1;
+    ],
+    [
+        sh:path schema:latitude;
+        sh:datatype xsd:string;
+        sh:maxCount 1;
+    ],
+    [
+        sh:path schema:longitude;
+        sh:datatype xsd:string;
+        sh:maxCount 1;
+    ].
+
+exshapes:PostalAddress
+    a rdfs:Class, sh:NodeShape;
+    sh:targetClass schema:PostalAddress;
+    sh:property [
+        sh:path schema:addressCountry;
+        sh:datatype xsd:string;
+        sh:maxCount 1;
+    ],
+    [
+        sh:path schema:addressLocality;
+        sh:datatype xsd:string;
+        sh:maxCount 1;
+    ],
+    [
+        sh:path schema:addressRegion;
+        sh:datatype xsd:string;
+        sh:maxCount 1;
+    ],
+    [
+        sh:path schema:postOfficeBoxNumber;
+        sh:datatype xsd:string;
+        sh:maxCount 1;
+    ],
+    [
+        sh:path schema:postalCode;
+        sh:datatype xsd:string;
+        sh:maxCount 1;
+    ],
+    [
+        sh:path schema:streetAddress;
+        sh:datatype xsd:string;
+        sh:maxCount 1;
+    ].
+    
+
