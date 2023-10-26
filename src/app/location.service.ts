@@ -1,4 +1,7 @@
 import { Injectable } from '@angular/core';
+import { distance } from './util';
+
+const IGENT = { lat: 51.012558, lng: 3.708458 };
 
 @Injectable({
   providedIn: 'root',
@@ -26,7 +29,8 @@ export class LocationService {
           }
         }
       );
-      this.myLocation = loc;
+      // this.myLocation = loc;
+      this.myLocation = IGENT;
     }
     return this.myLocation;
   }

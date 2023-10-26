@@ -12,9 +12,9 @@ import {
 } from 'src/.sdx-gen/sdk.generated';
 
 const clientCredentials: SolidClientCredentials = {
-  clientId: 'ugain_d1d53aa3-e84f-428d-86cf-7dab3ac0e151',
+  clientId: 'ugain-new_4ea5225b-1104-499d-832c-f0f963248b2c',
   clientSecret:
-    '25d660225bb92fe7a77bc86a74b870147897a73395a52fa4bd136d4416390684d7e7b9bc291547ea3382de2bb1069ba5958d54021861a7b35c6df7d0f7c68783',
+    'a0141a51dde777114d432e3f260b00986cef92c364e1f65b2d6fd4e5181198f024752eda113deef03b23bef072618eec9314c8202fa91ee8d6b0eb6266f4e445',
   identityServerUrl: 'http://localhost:3000',
 };
 const schema = GRAPHQL_SCHEMA;
